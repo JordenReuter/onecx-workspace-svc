@@ -14,6 +14,7 @@ import org.jboss.resteasy.reactive.server.ServerExceptionMapper;
 import org.tkit.onecx.workspace.domain.daos.SlotDAO;
 import org.tkit.onecx.workspace.domain.daos.WorkspaceDAO;
 import org.tkit.onecx.workspace.domain.models.Slot;
+import org.tkit.onecx.workspace.domain.services.SlotService;
 import org.tkit.onecx.workspace.rs.internal.mappers.InternalExceptionMapper;
 import org.tkit.onecx.workspace.rs.internal.mappers.SlotMapper;
 import org.tkit.quarkus.jpa.exceptions.ConstraintException;
@@ -43,6 +44,9 @@ public class SlotInternalRestController implements SlotInternalApi {
 
     @Inject
     WorkspaceDAO workspaceDAO;
+
+    @Inject
+    SlotService slotService;
 
     @Override
     public Response createSlot(CreateSlotRequestDTO createSlotRequestDTO) {
@@ -94,9 +98,8 @@ public class SlotInternalRestController implements SlotInternalApi {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
 
-        mapper.update(updateSlotRequestDTO, slot);
-        slot = dao.update(slot);
-        return Response.ok(mapper.map(slot)).build();
+        var updatedSlot = slotService.saveUpdateSlot(slot, updateSlotRequestDTO);
+        return Response.ok(mapper.map(updatedSlot)).build();
     }
 
     @ServerExceptionMapper

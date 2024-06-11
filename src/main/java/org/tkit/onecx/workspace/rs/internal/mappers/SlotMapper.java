@@ -61,4 +61,10 @@ public interface SlotMapper {
     @Mapping(target = "controlTraceabilityManual", ignore = true)
     @Mapping(target = "components", ignore = true)
     Slot map(CreateSlotDTO createSlotDTO);
+
+    default Slot removeComponents(Slot slot) {
+        var updatedSlot = slot;
+        updatedSlot.setComponents(null);
+        return updatedSlot;
+    }
 }
