@@ -48,7 +48,7 @@ class WorkspaceEximV1RestControllerTest extends AbstractTest {
         assertThat(w.getRoles()).isNotNull().isNotEmpty().hasSize(3)
                 .contains(new EximWorkspaceRoleDTOV1().name("role-1-2").description("d1"));
         assertThat(w.getProducts()).isNotNull().isNotEmpty().hasSize(2)
-                .contains(new EximProductDTOV1().productName("onecx-core").baseUrl("/core")
+                .contains(new EximProductDTOV1().productName("onecx-core").baseUrl("/core").displayName("core-100")
                         .microfrontends(List.of(new EximMicrofrontendDTOV1().appId("menu").basePath("/menu"),
                                 new EximMicrofrontendDTOV1().appId("theme").basePath("/theme"))));
 
@@ -82,7 +82,7 @@ class WorkspaceEximV1RestControllerTest extends AbstractTest {
         assertThat(w.getRoles()).isNotNull().isNotEmpty().hasSize(3)
                 .contains(new EximWorkspaceRoleDTOV1().name("role-1-2").description("d1"));
         assertThat(w.getProducts()).isNotNull().isNotEmpty().hasSize(2)
-                .contains(new EximProductDTOV1().productName("onecx-core").baseUrl("/core")
+                .contains(new EximProductDTOV1().productName("onecx-core").baseUrl("/core").displayName("core-100")
                         .microfrontends(List.of(new EximMicrofrontendDTOV1().appId("menu").basePath("/menu"),
                                 new EximMicrofrontendDTOV1().appId("theme").basePath("/theme"))));
 
